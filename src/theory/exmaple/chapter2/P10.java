@@ -10,7 +10,6 @@ public class P10 {
 
         for (int n = 3; n <= 10; n += 2) {	    // 대상은 홀수만
             int i;
-            System.out.println("ptr: " + ptr);
             for (i = 1; i < ptr; i++) {			// 이미 찾은 소수로 나누어 봄
                 counter++;
                 if (n % prime[i] == 0)			// 나누어떨어지면 소수가 아님

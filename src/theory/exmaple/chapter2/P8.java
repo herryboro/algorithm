@@ -6,7 +6,6 @@ public class P8 {
     static int cardConvR(int x, int r, char[] d) {
         int digits = 0;						// 변환 후의 자릿수
         String dchar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        char change = ' ';
 
         do {
             d[digits++] = dchar.charAt(x % r);	// r로 나눈 나머지를 저장
@@ -27,7 +26,7 @@ public class P8 {
         System.out.println("10진수를 기수 변환합니다.");
         do {
             do {
-                System.out.print("변환하는 음이 아닌 정수：");
+                System.out.print("정수 입력：");
                 no = stdIn.nextInt();
             } while (no < 0);
 
@@ -39,7 +38,7 @@ public class P8 {
             dno = cardConvR(no, cd, cno);		// no를 cd진수로 변환
 
             System.out.print(cd + "진수로는 ");
-            for (int i = 0; i < dno; i++) {    	// 윗자리부터 차례로 나타냄
+            for (int i = dno - 1; i >= 0; i--) {    	// 역순으로 저장된 변환된 진수 값을 거꾸로 출력.
                 System.out.print(cno[i]);
             }
             System.out.println("입니다.");

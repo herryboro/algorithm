@@ -9,7 +9,7 @@ public class P11 {
         prime[ptr++] = 2;							// ２는 소수임
         prime[ptr++] = 3;							// ３은 소수임
 
-        for (int n = 5 ; n <= 10; n += 2) {		// 대상은 홀수만
+        for (int n = 5 ; n <= 100; n += 2) {		// 대상은 홀수만
             boolean flag = false;
             for (int i = 1; prime[i] * prime[i] <= n; i++) {
                 counter += 2;
