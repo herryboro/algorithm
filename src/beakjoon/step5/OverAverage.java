@@ -31,6 +31,5 @@ public class OverAverage {
             System.out.printf("%.3f%%\n", (cnt/denominator)*100);
             sum = 0;
         }
-
     }
 }
