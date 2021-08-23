@@ -15,7 +15,6 @@ public class APlusB_8 {
 
             int firstNum = Integer.parseInt(numStr[0]);
             int secondNum = Integer.parseInt(numStr[1]);
-
             bw.write("Case #" + (i+1) + ": " + firstNum + " + " + secondNum + " = ");
             bw.write(String.valueOf(firstNum + secondNum));
             bw.newLine();
