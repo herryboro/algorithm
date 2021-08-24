@@ -24,5 +24,6 @@ public class multiplication {
         System.out.println(answer4);
         System.out.println(answer5);
         System.out.println(answer6);
+
     }
 }
