@@ -8,7 +8,7 @@ public class OxQuiz {
         int count = sc.nextInt();
         sc.nextLine();
         String[] quiz = new String[count];
-        int[] sumArray = new int[quiz.length];
+        int[] sumArray = new int[count];
         int sum = 1;
         int sumAccum = 0;
 
