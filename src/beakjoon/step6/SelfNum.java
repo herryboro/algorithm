@@ -1,31 +1,39 @@
 package beakjoon.step6;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 public class SelfNum {
-    public static void main(String[] args) {
-        List list = new ArrayList();
 
-        for (int i = 1; i < 10002; i++) {
-            list.add(i + (i / 10) + (i % 10));
-        }
-        HashSet hashSet = new HashSet(list);
-        ArrayList arrayList = new ArrayList<>(hashSet);
-
-        for (int i = 0; i < arrayList.size(); i++) {
-            System.out.println(arrayList.get(i));
-        }
-        for (int i = 1; i < 10002; i++) {
-            if(!arrayList.contains(i)) {
-                System.out.println(i);
-            }
-        }
-    }
 }
 
-
+//    public static void main(String[] args) {
+//        boolean[] check = new boolean[10001];
+//
+//        for (int i = 1; i < 10001; i++){
+//            int n = d(i);
+//
+//            if(n < 10001){
+//                check[n] = true;
+//            }
+//        }
+//
+//        StringBuilder sb = new StringBuilder();
+//
+//        for (int i = 1; i < 10001; i++) {
+//            if (!check[i]) {
+//                sb.append(i).append('\n');
+//            }
+//        }
+//        System.out.println(sb);
+//    }
+//
+//    static int d(int number) {
+//        int sum = number;
+//
+//        while(number != 0){
+//            sum = sum + (number % 10);
+//            number = number/10;
+//        }
+//        return sum;
+//    }
 
 
 
