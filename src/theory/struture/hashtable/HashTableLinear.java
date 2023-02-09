@@ -10,6 +10,7 @@ public class HashTableLinear {
     public class Slot {
         String key;
         String value;
+
         Slot(String key, String value) {
             this.key = key;
             this.value = value;
@@ -22,6 +23,7 @@ public class HashTableLinear {
 
     public boolean saveData(String key, String value) {
         Integer address = this.hashFunc(key);
+
         if (this.hashTable[address] != null) {
             if (this.hashTable[address].key == key) {
                 this.hashTable[address].value = value;

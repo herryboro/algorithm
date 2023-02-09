@@ -11,6 +11,7 @@ public class HashTable {
         String key;
         String value;
         Slot next;
+
         Slot(String key, String value) {
             this.key = key;
             this.value = value;
@@ -24,6 +25,7 @@ public class HashTable {
 
     public boolean saveData(String key, String value) {
         Integer address = this.hashFunc(key);
+
         if (this.hashTable[address] != null) {
             Slot findSlot = this.hashTable[address];
             Slot prevSlot = this.hashTable[address];
@@ -44,7 +46,7 @@ public class HashTable {
     }
 
     public String getData(String key) {
-        Integer address = this.hashFunc(key);
+        int address = this.hashFunc(key);
         if (this.hashTable[address] != null) {
             Slot findSlot = this.hashTable[address];
             while (findSlot != null) {
@@ -66,9 +68,58 @@ public class HashTable {
         hash.saveData("funCoding", "01033333333");
         hash.saveData("David", "01033334444");
         hash.saveData("Dave", "01044444444");
+        hash.saveData("Dave2", "01044445555");
         System.out.println(hash.getData("DaveLee"));
         System.out.println(hash.getData("funCoding"));
         System.out.println(hash.getData("David"));
         System.out.println(hash.getData("Dave"));
+        System.out.println(hash.getData("Dave2"));
     }
 }
+
+/*
+    ▣ 강사 풀이( saveData() )
+    public boolean saveData(String key, String value) {
+        Integer address = this.hashFunc(key);
+        if (this.hashTable[address] != null) {
+            Slot findSlot = this.hashTable[address];
+            Slot prevSlot = this.hashTable[address];
+            while (findSlot != null) {
+                if (findSlot.key == key) {
+                    findSlot.value = value;
+                    return true;
+                } else {
+                    prevSlot = findSlot;
+                    findSlot = findSlot.next;
+                }
+            }
+            prevSlot.next = new Slot(key, value);
+        } else {
+            this.hashTable[address] = new Slot(key, value);
+        }
+        return true;
+    }
+
+
+    ▣ 내풀이 ( saveData() )
+    public void saveData(String key, String val) {
+        int hashVAl = hashFunc(key);
+
+        if (this.hashTable[hashVAl] != null) {
+            Slot findSlot = this.hashTable[hashVAl];
+            Slot prevSlot = this.hashTable[hashVAl];
+
+            while (findSlot != null) {
+                if (findSlot.key == key) {
+                    findSlot.value = val;
+                } else {
+                    prevSlot = findSlot;
+                    findSlot = findSlot.next;
+                }
+            }
+            prevSlot.next = new Slot(key, val);
+        } else {
+            this.hashTable = new Slot[hashVAl];
+        }
+    }
+ */

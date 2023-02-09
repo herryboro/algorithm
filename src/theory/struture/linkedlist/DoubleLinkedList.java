@@ -1,13 +1,13 @@
 package theory.struture.linkedlist;
 
 public class DoubleLinkedList<T> {
-    public Node<T> head = null;
-    public Node<T> tail = null;
+    private Node<T> head;
+    private Node<T> tail;
 
     public class Node<T> {
         T data;
-        Node<T> prev = null;
-        Node<T> next = null;
+        Node<T> prev;
+        Node<T> next;
 
         public Node(T data) {
             this.data = data;
@@ -30,13 +30,13 @@ public class DoubleLinkedList<T> {
     }
 
     public void printAll() {
-        if (this.head != null) {
-            Node<T> node = this.head;
-            System.out.println(node.data);
+        Node<T> node = this.head;
+        if (node != null) {
             while (node.next != null) {
-                node = node.next;
                 System.out.println(node.data);
+                node = node.next;
             }
+            System.out.println(node.data);
         }
     }
 
@@ -72,27 +72,25 @@ public class DoubleLinkedList<T> {
         }
     }
 
-    public boolean insertToFront(T existedData, T addData) {
+    public boolean insertToFront(T addData, T existedData) {
         if (this.head == null) {
             this.head = new Node<T>(addData);
             this.tail = this.head;
             return true;
         } else if (this.head.data == existedData) {
-            Node<T> newHead = new Node<T>(addData);
-            newHead.next = this.head;
-            this.head = newHead;
+            Node<T> newNode = new Node<T>(addData);
+            newNode.next = this.head;
+            this.head = newNode;
             return true;
         } else {
             Node<T> node = this.head;
             while (node != null) {
                 if (node.data == existedData) {
-                    Node<T> nodePrev = node.prev;
-
-                    nodePrev.next = new Node<T>(addData);
-                    nodePrev.next.next = node;
-
-                    nodePrev.next.prev = nodePrev;
-                    node.prev = nodePrev.next;
+                    Node<T> prevNode = node.prev;
+                    prevNode.next = new Node<T>(addData);
+                    prevNode.next.next = node;
+                    prevNode.next.prev = prevNode;
+                    node.prev = prevNode.next;
                     return true;
                 } else {
                     node = node.next;
@@ -110,16 +108,16 @@ public class DoubleLinkedList<T> {
         MyLinkedList.addNode(3);
         MyLinkedList.addNode(4);
         MyLinkedList.addNode(5);
-        MyLinkedList.printAll();
+//        MyLinkedList.printAll();
         System.out.println("----------------");
 
         MyLinkedList.insertToFront(1, 2);
-        MyLinkedList.insertToFront(3, 10);
-        MyLinkedList.insertToFront(2, 11);
+        MyLinkedList.insertToFront(6, 5);
 
-
+//
+//
         MyLinkedList.printAll();
-        System.out.println("----------------");
+//        System.out.println("----------------");
 //
 //        MyLinkedList.insertToFront(6, 2);
 //        MyLinkedList.insertToFront(1, 0);

@@ -4,72 +4,11 @@ public class SingleLinkedList<T> {
     private Node<T> head = null;
 
     public class Node<T> {
-        T data;
-        Node<T> next = null;
+        public T data;
+        public Node<T> next;
 
         public Node(T data) {
             this.data = data;
-        }
-    }
-
-    public void addNode(T a) {
-        if (head == null) {
-            head = new Node<T>(a);
-        } else {
-            Node<T> node = this.head;
-            while (node.next != null) {
-                node = node.next;
-            }
-            node.next = new Node<T>(a);
-        }
-    }
-
-    public Node<T> search(T data) {
-        if (this.head == null) {
-            return null;
-        } else {
-            Node<T> node = this.head;
-            while(node != null) {
-                if (node.data == data) {
-                    return node;
-                } else {
-                    node = node.next;
-                }
-            }
-            return null;
-        }
-    }
-
-    public void addNodeInside(T data, T isData) {
-        Node<T> searchedNode = this.search(isData);
-
-        if (searchedNode == null) {
-            this.addNode(data);
-        } else {
-            Node<T> nextNode = searchedNode.next;
-            searchedNode.next = new Node<T>(data);
-            searchedNode.next.next = nextNode;
-        }
-    }
-
-    public boolean delNode(T isData) {
-        if (this.head == null) {
-            return false;
-        } else {
-            Node<T> node = this.head;
-            if (node.data == isData) {
-                this.head = this.head.next;
-                return true;
-            } else {
-                while (node.next != null) {
-                    if (node.next.data == isData) {
-                        node.next = node.next.next;
-                        return true;
-                    }
-                    node = node.next;
-                }
-                return false;
-            }
         }
     }
 
@@ -84,15 +23,81 @@ public class SingleLinkedList<T> {
         }
     }
 
+    public void addNode(T data) {
+        if (this.head == null) {
+            this.head = new Node<T>(data);
+        } else {
+            Node<T> node = this.head;
+            while (node.next != null) {
+                node = node.next;
+            }
+            node.next = new Node<T>(data);
+        }
+    }
+
+    public Node<T> searchNode(T searchData) {
+        if (this.head == null) {
+            return null;
+        } else {
+            Node<T> node = this.head;
+            while (node.next != null) {
+                if (node.data == searchData) {
+                    return node;
+                } else {
+                    node = node.next;
+                }
+            }
+            return null;
+        }
+    }
+
+    public void addInsertNode(T insertData, T searchData) {
+        Node<T> node = searchNode(searchData);
+
+        if (node == null) {
+            addNode(insertData);
+        } else {
+            Node<T> nextNode = node.next;
+            node.next = new Node<T>(insertData);
+            node.next.next = nextNode;
+        }
+    }
+
+    public boolean delNode(T isData) {
+        if (this.head == null) {
+            return false;
+        } else {
+            Node<T> node = this.head;
+
+            if (node.data == isData) {
+                this.head = this.head.next;
+                return true;
+            } else {
+                while (node.next != null) {
+                    if (node.next.data == isData) {
+                        System.out.println("next = " + node.next.next);
+                        node.next = node.next.next;
+                        return true;
+                    }
+                    node = node.next;
+                }
+                return false;
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        SingleLinkedList<Integer> MyLinkedList = new SingleLinkedList<Integer>();
-        MyLinkedList.addNode(1);
-        MyLinkedList.addNode(2);
-        MyLinkedList.addNode(3);
-        MyLinkedList.addNode(4);
-        MyLinkedList.addNode(5);
-        MyLinkedList.delNode(2);
-        MyLinkedList.delNode(10);
-        MyLinkedList.printAll();
+        SingleLinkedList<Integer> myLinkedList = new SingleLinkedList<Integer>();
+
+        myLinkedList.addNode(1);
+        myLinkedList.addNode(2);
+        myLinkedList.addNode(3);
+        myLinkedList.addNode(4);
+        myLinkedList.addNode(5);
+
+        myLinkedList.delNode(5);
+//        myLinkedList.addNode(1);
+//        myLinkedList.addInsertNode(2, 1);
+        myLinkedList.printAll();
     }
 }
