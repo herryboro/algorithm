@@ -1,7 +1,7 @@
 package infinflearnAlgorithm.sortPart;
 import java.util.Scanner;
 
-public class insertioSort {
+public class insertionSort {
     public int[] solution(int n, int[] arr) {
         for(int i = 1; i < n; i++) {
             int tmp = arr[i];
@@ -18,7 +18,7 @@ public class insertioSort {
         return arr;
     }
     public static void main(String[] args){
-        insertioSort T = new insertioSort();
+        insertionSort T = new insertionSort();
         Scanner kb = new Scanner(System.in);
         int n=kb.nextInt();
         int[] arr=new int[n];
