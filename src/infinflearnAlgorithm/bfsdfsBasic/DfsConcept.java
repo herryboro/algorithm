@@ -17,9 +17,19 @@ public class DfsConcept {
         if (root == null) {
             return;
         } else {
+            /*
+                전위 순회 방식
+                순회 방식에 따른 출력 코드 위치 -> System.out.print(root.data + " ");
+             */
             dfsMethod(root.lt);
-            System.out.print(root.data + " ") ;
+            /*
+                중위 순회 방식
+             */
+            System.out.print(root.data + " ");
             dfsMethod(root.rt);
+            /*
+                후위 순회 방식
+             */
         }
     }
 
