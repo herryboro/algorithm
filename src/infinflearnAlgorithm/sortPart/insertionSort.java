@@ -6,6 +6,7 @@ public class insertionSort {
         for(int i = 1; i < n; i++) {
             int tmp = arr[i];
             int j = 0;
+
             for(j = i - 1; j >= 0; j--) {
                 if(arr[j] > tmp) {
                     arr[j+1] = arr[j];
@@ -13,6 +14,7 @@ public class insertionSort {
                     break;
                 }
             }
+
             arr[j + 1] = tmp;
         }
         return arr;

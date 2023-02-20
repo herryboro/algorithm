@@ -1,5 +1,4 @@
 package infinflearnAlgorithm.bfsdfsBasic;
-
 class Node {
     int data;
     Node lt, rt;
@@ -9,6 +8,7 @@ class Node {
         this.lt = this.rt = null;
     }
 }
+
 
 public class DfsConcept {
     Node root;
