@@ -11,7 +11,7 @@ public class Recursive {
         } else {
             recursive(n-1);
         }
-        System.out.print(n);
+        System.out.print(n + " ");
     }
     public static void main(String[] args) throws IOException {
         Recursive recur = new Recursive();

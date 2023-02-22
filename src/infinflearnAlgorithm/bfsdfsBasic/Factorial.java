@@ -8,7 +8,10 @@ public class Factorial {
     public int fac(int n) {
         if(n == 1) {
             return 1;
-        } else return n * fac(n-1);
+        } else {
+            System.out.print("n: " + n + ", ");
+            return n * fac(n-1);
+        }
     }
     public static void main(String[] args) throws IOException {
         Factorial factorial = new Factorial();
