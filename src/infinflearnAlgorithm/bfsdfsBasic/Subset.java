@@ -21,7 +21,7 @@ public class Subset {
     }
     public static void main(String[] args) {
         Subset subset = new Subset();
-        n = 3;
+        n = 5;
         ch = new int[n + 1];
         subset.dfs(1);
     }
