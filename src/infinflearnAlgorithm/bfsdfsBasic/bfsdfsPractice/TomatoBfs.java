@@ -37,7 +37,7 @@ public class TomatoBfs {
         // 초기 1값의 위치
         Queue<Tomato> queue = new LinkedList<>();
 
-        // -1 개수
+        // 입력시 1로 채워지는 개수, -1로 채워지는 개수,
         int oneCnt = 0;
         int minusOneCnt = 0;
 
