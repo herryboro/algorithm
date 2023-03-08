@@ -18,24 +18,20 @@ public class Practice {
     }
 
     private int dfs(Map<String, List<String>> clothesMap, List<String> outfit, int index, Map<String, Integer> memo) {
-        // clothesMap size = 2, 1
         if (index == clothesMap.size()) {
             return 1;
         }
         String[] types = clothesMap.keySet().toArray(new String[clothesMap.keySet().size()]);
-        // type = green_turban
         String type = types[index];
         List<String> clothesList = clothesMap.get(type);
 
         int count = 0;
         for (String clothes : clothesList) {
-            // outfit {yellow_hat}
             outfit.add(clothes);
-            // yellow_hat
             String key = String.join(",", outfit);
             if (memo.containsKey(key)) {
                 count += memo.get(key);
-            } else {                                        // index = 0
+            } else {
                 int subCount = dfs(clothesMap, outfit, index + 1, memo);
                 count += subCount;
                 memo.put(key, subCount);
