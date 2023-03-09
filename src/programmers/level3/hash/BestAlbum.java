@@ -3,70 +3,56 @@ package programmers.level3.hash;
 import java.util.*;
 public class BestAlbum {
     public int[] solution(String[] genres, int[] plays) {
-        HashMap<String, Object> genresMap = new HashMap<String, Object>();          // <장르, 곡 정보>
-        HashMap<String, Integer> playMap = new HashMap<String, Integer>();          // <장르, 총 장르 재생수>
-        ArrayList<Integer> resultAL = new ArrayList<Integer>();
+        HashMap<String, HashMap<Integer, Integer>> genresMap = new HashMap<>();
+        HashMap<String, Integer> playMap = new HashMap<>();
+        ArrayList<Integer> resultAL = new ArrayList<>();
 
-        for(int i = 0; i < genres.length; i++) {
+        for (int i = 0; i < genres.length; i++) {
             String key = genres[i];
-            HashMap<Integer, Integer> infoMap;       // 곡 정보 : <곡 고유번호, 재생횟수>
-
-            if(genresMap.containsKey(key)) {
-                infoMap = (HashMap<Integer, Integer>)genresMap.get(key);
-            }
-            else {
-                infoMap = new HashMap<Integer, Integer>();
-            }
+            HashMap<Integer, Integer> infoMap = genresMap.getOrDefault(key, new HashMap<>());
 
             infoMap.put(i, plays[i]);
             genresMap.put(key, infoMap);
 
-            //재생수
-            if(playMap.containsKey(key)){
-                playMap.put(key, playMap.get(key) + plays[i]);
-            }
-            else {
-                playMap.put(key, plays[i]);
-            }
+            int totalPlay = playMap.getOrDefault(key, 0);
+            totalPlay += plays[i];
+            playMap.put(key, totalPlay);
         }
 
-        int mCnt = 0;
+        List<Map.Entry<String, Integer>> playList = new ArrayList<>(playMap.entrySet());
+        Collections.sort(playList, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
 
-        Iterator it = sortByValue(playMap).iterator();
+        for (Map.Entry<String, Integer> playEntry : playList) {
+            HashMap<Integer, Integer> songMap = genresMap.get(playEntry.getKey());
 
-        while(it.hasNext()) {
-            String key = (String)it.next();
-            Iterator indexIt = sortByValue((HashMap<Integer, Integer>)genresMap.get(key)).iterator();
-            int playsCnt = 0;
+            List<Map.Entry<Integer, Integer>> songList = new ArrayList<>(songMap.entrySet());
+            Collections.sort(songList, new Comparator<Map.Entry<Integer, Integer>>() {
+                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                    int cmp = o2.getValue().compareTo(o1.getValue());
+                    return cmp != 0 ? cmp : o1.getKey().compareTo(o2.getKey());
+                }
+            });
 
-            while(indexIt.hasNext()){
-                resultAL.add((int)indexIt.next());
-                mCnt++;
-                playsCnt++;
-                if(playsCnt > 1) break;
+            int count = 0;
+            for (Map.Entry<Integer, Integer> songEntry : songList) {
+                resultAL.add(songEntry.getKey());
+                count++;
+                if (count >= 2) {
+                    break;
+                }
             }
         }
 
         int[] answer = new int[resultAL.size()];
-
-        for(int i = 0; i < resultAL.size(); i++) {
-            answer[i] = resultAL.get(i).intValue();
+        for (int i = 0; i < resultAL.size(); i++) {
+            answer[i] = resultAL.get(i);
         }
+
         return answer;
-    }
-
-    private ArrayList sortByValue(final Map map) {
-        ArrayList<Object> keyList = new ArrayList();
-        keyList.addAll(map.keySet());
-
-        Collections.sort(keyList, new Comparator() {
-            public int compare(Object o1, Object o2) {
-                Object v1 = map.get(o1);
-                Object v2 = map.get(o2);
-                return ((Comparable) v2).compareTo(v1);
-            }
-        });
-        return keyList;
     }
 
     public static void main(String[] args) {
