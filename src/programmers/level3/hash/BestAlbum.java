@@ -22,7 +22,8 @@ public class BestAlbum {
         List<Map.Entry<String, Integer>> playList = new ArrayList<>(playMap.entrySet());
         Collections.sort(playList, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return o2.getValue().compareTo(o1.getValue());
+                int value = o2.getValue().compareTo(o1.getValue());
+                return value;
             }
         });
 
@@ -38,6 +39,7 @@ public class BestAlbum {
             });
 
             int count = 0;
+
             for (Map.Entry<Integer, Integer> songEntry : songList) {
                 resultAL.add(songEntry.getKey());
                 count++;
