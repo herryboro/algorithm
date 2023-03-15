@@ -1,6 +1,7 @@
 package programmers.level3.hash;
 
 import java.util.*;
+
 public class BestAlbum {
     public int[] solution(String[] genres, int[] plays) {
         HashMap<String, HashMap<Integer, Integer>> genresMap = new HashMap<>();
@@ -9,7 +10,7 @@ public class BestAlbum {
 
         for (int i = 0; i < genres.length; i++) {
             String key = genres[i];
-            HashMap<Integer, Integer> infoMap = genresMap.getOrDefault(key, new HashMap<>());
+            HashMap<Integer, Integer> infoMap = genresMap.getOrDefault(key, new HashMap<Integer, Integer>());
 
             infoMap.put(i, plays[i]);
             genresMap.put(key, infoMap);
@@ -20,6 +21,7 @@ public class BestAlbum {
         }
 
         List<Map.Entry<String, Integer>> playList = new ArrayList<>(playMap.entrySet());
+
         Collections.sort(playList, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                 int value = o2.getValue().compareTo(o1.getValue());
@@ -34,7 +36,7 @@ public class BestAlbum {
             Collections.sort(songList, new Comparator<Map.Entry<Integer, Integer>>() {
                 public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
                     int cmp = o2.getValue().compareTo(o1.getValue());
-                    return cmp != 0 ? cmp : o1.getKey().compareTo(o2.getKey());
+                    return cmp;
                 }
             });
 
@@ -56,6 +58,7 @@ public class BestAlbum {
 
         return answer;
     }
+
 
     public static void main(String[] args) {
         BestAlbum bestAlbum = new BestAlbum();

@@ -77,18 +77,11 @@ public class CardNumber2_sliver4 {
         // lo가 hi랑 같아질 때 까지 반복
         while (lo <= hi) {
 
-            int mid = (lo + hi) / 2; // 중간위치를 구한다.
+            int mid = (lo + hi) / 2;
 
-            /*
-             *  key 값이 중간 위치의 값보다 작거나 같을 경우
-             *
-             *  (중복 원소에 대해 왼쪽으로 탐색하도록 상계를 내린다.)
-             */
             if (key <= arr[mid]) {
                 hi = mid - 1;
-            }
-
-            else {
+            } else {
                 lo = mid + 1;
             }
 
@@ -106,12 +99,9 @@ public class CardNumber2_sliver4 {
 
             int mid = (lo + hi) / 2; // 중간위치를 구한다.
 
-            // key값이 중간 위치의 값보다 작을 경우
             if (key < arr[mid]) {
                 hi = mid - 1;
-            }
-            // 중복원소의 경우 else에서 처리된다.
-            else {
+            } else {
                 lo = mid + 1;
             }
         }
