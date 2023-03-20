@@ -9,19 +9,12 @@ public class UndestroyedBuilding {
 
         for (int i = 0; i < skill.length; i++) {
             int side = skill[i][0];
-            //              0                   3                       0                       4
+            //              2                   0                       2                       3
             int r1 = skill[i][1]; int c1 = skill[i][2]; int r2  = skill[i][3]; int c2  = skill[i][4];
             int degree = skill[i][5];
 
-            System.out.println(r1);
-            System.out.println(c1);
-            System.out.println(r2);
-            System.out.println(c2);
-            System.out.println("degree: " + degree);
-
-
-            for (int j = r1; j < c1; j++) {
-                for (int k = r2; k < c2; k++) {
+            for (int j = r1; j <= r2; j++) {
+                for (int k = c1; k <= c2; k++) {
                     if(side == 1) board[j][k] -= degree;
                     else board[j][k] += degree;
                 }
@@ -33,13 +26,6 @@ public class UndestroyedBuilding {
             for (int j = 0; j < board[i].length; j++) {
                 if(board[i][j] > 0) answer++;
             }
-        }
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
         }
 
         return answer;
