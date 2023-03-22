@@ -19,11 +19,9 @@ public class DevelopFunction {
         ArrayList<Integer> list = new ArrayList<>();
 
         int cnt = 1;
-        // 처음 값
         int prevVal = queue.poll();
 
         while (!queue.isEmpty()) {
-            // 다음 항 값
             int backVal = queue.poll();
 
             if (prevVal >= backVal) {

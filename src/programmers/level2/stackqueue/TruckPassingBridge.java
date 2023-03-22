@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
 public class TruckPassingBridge {
 
     public int solution(int bridge_length, int weight, int[] truck_weights) {
