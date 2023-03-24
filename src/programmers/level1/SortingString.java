@@ -21,20 +21,23 @@ public class SortingString {
     public String[] solution(String[] strings, int n) {
         String[] answer = new String[strings.length];
         Str[] strArr = new Str[strings.length];
+
         // 같은 문자열이 여럿일 경우 대비해서 미리 sortting 시켜놈
         Arrays.sort(strings);
 
         for (int i = 0; i < strings.length; i++) {
             strArr[i] = new Str(i, strings[i].substring(n, n + 1));
         }
+        // Str클래스 배열을 n번째 문자를 기준으로 정렬
         Arrays.sort(strArr);
 
         for (int i = 0; i < strArr.length; i++) {
-//            answer[i] = strArr[strArr[i].index];
+            answer[i] = strings[strArr[i].index];
         }
 
         return answer;
     }
+
     public static void main(String[] args) {
         String[] str = {"sun", "bed", "car"};
         int n = 1;
