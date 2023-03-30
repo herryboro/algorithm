@@ -3,54 +3,47 @@ package infinflearnAlgorithm;
 import java.util.*;
 
 public class Practice {
-    public int solution(String[][] clothes) {
-        Map<String, List<String>> clothesMap = new HashMap<>();
-        for (String[] item : clothes) {
-            String type = item[1];
-            String name = item[0];
-            List<String> clothesList = clothesMap.getOrDefault(type, new ArrayList<String>());
-            clothesList.add(name);
-            clothesMap.put(type, clothesList);
-        }
-        List<String> outfit = new ArrayList<>();
-        Map<String, Integer> memo = new HashMap<>();
-        return dfs(clothesMap, outfit, 0, memo) - 1;
-    }
+    public String solution(String[][] C) {
+        Stack<String> stack = new Stack<>();
+        int current = -1;
 
-    private int dfs(Map<String, List<String>> clothesMap, List<String> outfit, int index, Map<String, Integer> memo) {
-        if (index == clothesMap.size()) {
-            return 1;
-        }
-        String[] types = clothesMap.keySet().toArray(new String[clothesMap.keySet().size()]);
-        String type = types[index];
-        List<String> clothesList = clothesMap.get(type);
+        for (int i = 0; i < C.length; i++) {
+            if (C[i][0].equals("PUSH")) {
+                if (current != stack.size() - 1) {
+                    while (stack.size() > current + 1) {
+                        stack.pop();
+                    }
+                }
+                stack.push(C[i][1]);
+                current++;
+            } else if (C[i][0].equals("BACK")) {
+                int move = Integer.parseInt(C[i][1]);
 
-        int count = 0;
-        for (String clothes : clothesList) {
-            outfit.add(clothes);
-            String key = String.join(",", outfit);
-            if (memo.containsKey(key)) {
-                count += memo.get(key);
-            } else {
-                int subCount = dfs(clothesMap, outfit, index + 1, memo);
-                count += subCount;
-                memo.put(key, subCount);
+                if (current - move >= -1) {
+                    current -= move;
+                } else {
+                    current = -1;
+                }
+            } else if (C[i][0].equals("NEXT")) {
+                int move = Integer.parseInt(C[i][1]);
+
+                if (current + move <= stack.size() - 1) {
+                    current += move;
+                } else {
+                    current = stack.size() - 1;
+                }
             }
-            outfit.remove(outfit.size() - 1);
         }
-        String key = String.join(",", outfit);
-        if (!memo.containsKey(key)) {
-            memo.put(key, count);
-        }
-        count += dfs(clothesMap, outfit, index + 1, memo);
-        return count;
+        return stack.get(current);
     }
 
     public static void main(String[] args) {
         Practice p = new Practice();
-        String[][] clothes = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}};
-//        String[][] clothes = {{"crow_mask", "face"}, {"blue_sunglasses", "face"}, {"smoky_makeup", "face"}};
-        System.out.println(p.solution(clothes));
+        String[][] C = {
+                {"PUSH","www.domain1.com"}, {"PUSH","www.domain2.com"}, {"PUSH","www.domain3.com"},
+                {"BACK","1"}, {"BACK","1"}, {"PUSH","www.domain4.com"}
+        };
+        System.out.println(p.solution(C));
     }
 }
 
