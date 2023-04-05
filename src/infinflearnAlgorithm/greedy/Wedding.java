@@ -6,18 +6,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
-class Participant implements Comparable<Participant>{
-    int startTime;
-    int endTime;
+class Participant implements Comparable<Participant> {
+    int time;
+    String end;
 
-    public Participant(int startTime, int endTime) {
-        this.startTime = startTime;
-        this.endTime = endTime;
+    public Participant(int time, String end) {
+        this.time = time;
+        this.end = end;
     }
 
     @Override
     public int compareTo(Participant o) {
-        return this.startTime - o.startTime;
+        if (this.time == o.time) {
+            return this.end.compareTo(o.end);
+        } else {
+            return Integer.compare(this.time, o.time);
+        }
     }
 }
 
@@ -30,26 +34,24 @@ public class Wedding {
 
         for (int i = 0; i < n; i++) {
             String[] s = br.readLine().split(" ");
-            participants.add(new Participant(Integer.parseInt(s[0]), Integer.parseInt(s[1])));
+            participants.add(new Participant(Integer.parseInt(s[0]), "s"));
+            participants.add(new Participant(Integer.parseInt(s[1]), "e"));
         }
 
         Collections.sort(participants);
 
+        int cnt = 0;
         int answer = 0;
-        int compareVal = 0;
-        int left = participants.get(0).startTime;
-        int right = participants.get(0).endTime;
 
-        for (int i = 0; i < participants.size(); i++) {
-            if(left >= participants.get(i).startTime || right > participants.get(i).startTime) {
-                compareVal++;
+        for (Participant participant : participants) {
+            if (participant.end.equals("s")) {
+                cnt++;
+                answer = Math.max(cnt, answer);
             } else {
-                left = participants.get(i).startTime;
-                right = participants.get(i).endTime;
-                answer = Math.max(answer, compareVal);
-                compareVal = 0;
+                cnt--;
             }
         }
+
         System.out.println(answer);
     }
 }
