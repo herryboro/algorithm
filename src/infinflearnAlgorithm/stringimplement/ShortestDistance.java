@@ -12,7 +12,7 @@ public class ShortestDistance {
         String t = str[1];
 
         int[] answer = new int[s.length()];
-        int distance = Integer.MAX_VALUE;;
+        int distance = Integer.MAX_VALUE;
 
         // 왼쪽부터 answer배열 채우기
         for (int i = 0; i < s.length(); i++) {
