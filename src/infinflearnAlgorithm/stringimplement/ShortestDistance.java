@@ -27,7 +27,6 @@ public class ShortestDistance {
         distance = 0;
 
         // 반대로 진행
-        // eochjgoekghlakegh h
         for (int i = s.length() - 1; i >= 0; i--) {
             if (!s.substring(i, i + 1).equals(t)) {
                 distance++;
