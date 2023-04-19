@@ -5,8 +5,13 @@ import java.util.*;
 public class Practice {
 
     public static void main(String[] args) {
-        char c = 65;
-        System.out.println(c);
+        StringBuilder sb = new StringBuilder();
+        sb.append("A" + 2);
+        System.out.println(sb);
+
+        String answer = "";
+        answer = "A";
+        System.out.println(answer + 3);
     }
 }
 
