@@ -22,8 +22,10 @@ public class compresStr {
             if (strArr[i].equals(strArr[i + 1])) {
                 cnt++;
             } else {
-                if (cnt > 1) sb.append(strArr[i] + cnt);
-                else sb.append(strArr[i]);
+                sb.append(strArr[i]);
+                if (cnt > 1) {
+                    sb.append(cnt);
+                }
                 cnt = 1;
             }
         }
